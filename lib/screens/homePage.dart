@@ -97,7 +97,11 @@ class _HomePageState extends State<HomePage> {
                       ),
                       // Image.network(iconUrl),
                       // MyText("${_weather?.cityName}", 10, Colors.white),
-                      const ExtraWeatherInfo(),
+                      ExtraWeatherInfo(
+                        feels_like: _weather?.feels_like ?? "",
+                        humidity: _weather?.humidity ?? "",
+                        windSpeed: _weather?.windSpeed ?? "",
+                      ),
                       Align(
                           alignment: Alignment.topLeft,
                           child: Padding(

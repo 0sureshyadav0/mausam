@@ -32,7 +32,8 @@ class _MainContainerState extends State<MainContainer> {
   String time = "";
 
   String formattedTime = "";
-
+  String date = DateFormat("dd MMMM").format(DateTime.now());
+  String day = DateFormat("EEEE").format(DateTime.now()).toString();
   @override
   void initState() {
     super.initState();
@@ -197,10 +198,10 @@ class _MainContainerState extends State<MainContainer> {
                           "./assets/weatherAssets/temperature.json"),
                     ),
                     MyText("${double.parse(widget.temperature).toInt()} °C", 50,
-                        greyColor),
+                        Colors.white),
                   ],
                 ),
-                MyText("Tuesday, 24 November", 15, greyColor),
+                MyText("$day, $date", 15, greyColor),
               ],
             ),
           ],

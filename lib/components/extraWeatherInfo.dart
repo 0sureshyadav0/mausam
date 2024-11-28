@@ -4,7 +4,15 @@ import 'package:weather/colors/color.dart';
 import 'package:weather/widgets/text.dart';
 
 class ExtraWeatherInfo extends StatefulWidget {
-  const ExtraWeatherInfo({super.key});
+  String feels_like;
+  String humidity;
+  String windSpeed;
+  ExtraWeatherInfo({
+    super.key,
+    required this.feels_like,
+    required this.humidity,
+    required this.windSpeed,
+  });
 
   @override
   State<ExtraWeatherInfo> createState() => _ExtraWeatherInfoState();
@@ -35,7 +43,8 @@ class _ExtraWeatherInfoState extends State<ExtraWeatherInfo> {
                   ),
                   Container(
                     child: Column(children: [
-                      MyText("25 °C", 15.0, Colors.white),
+                      MyText("${double.parse(widget.feels_like).toInt()} °C",
+                          15.0, Colors.white),
                       MyText("Feels Like", 15, greyColor),
                     ]),
                   )
@@ -56,7 +65,7 @@ class _ExtraWeatherInfoState extends State<ExtraWeatherInfo> {
                   Container(
                     child: Column(
                       children: [
-                        MyText("20 %", 15, Colors.white),
+                        MyText("${widget.humidity} %", 15, Colors.white),
                         MyText("Humidity", 15, greyColor),
                       ],
                     ),
@@ -82,7 +91,7 @@ class _ExtraWeatherInfoState extends State<ExtraWeatherInfo> {
                   Container(
                     child: Column(
                       children: [
-                        MyText("1.02 Km/h", 15, Colors.white),
+                        MyText("${widget.windSpeed} Km/h", 15, Colors.white),
                         MyText("Wind", 15, greyColor),
                       ],
                     ),
