@@ -1,16 +1,20 @@
-# weather
+# 1. Initialize git in your project folder
+git init
 
-A new Flutter project.
+# 2. Add all files to the staging area
+git add .
 
-## Getting Started
+# 3. Commit your changes
+git commit -m "Initial commit"
 
-This project is a starting point for a Flutter application.
+# 4. Add the remote repository
+git remote add origin https://github.com/yourusername/my-new-repo.git
 
-A few resources to get you started if this is your first Flutter project:
+# 5. Push the code to GitHub
+git push -u origin main
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+### To delete branch
+- git push origin --delete branch-name

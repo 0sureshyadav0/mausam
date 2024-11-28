@@ -9,13 +9,19 @@ import 'package:weather/widgets/text.dart';
 class MainContainer extends StatefulWidget {
   String cityName;
   String countryName;
+  String iconName;
   String description;
-  MainContainer(
-      {super.key,
-      required this.cityName,
-      required this.countryName,
-      required this.description,
-      required});
+  String temperature;
+  int timeStamp;
+  MainContainer({
+    super.key,
+    required this.cityName,
+    required this.countryName,
+    required this.iconName,
+    required this.description,
+    required this.temperature,
+    required this.timeStamp,
+  });
 
   @override
   State<MainContainer> createState() => _MainContainerState();
@@ -24,21 +30,99 @@ class MainContainer extends StatefulWidget {
 class _MainContainerState extends State<MainContainer> {
   @override
   String time = "";
+
+  String formattedTime = "";
+
+  @override
   void initState() {
     super.initState();
+    print("Icon Name: ${widget.iconName}");
+
+    getLottieUrl();
     Timer.periodic(
-      Duration(seconds: 1),
+      const Duration(seconds: 1),
       (timer) {
         setState(
           () {
-            time = DateTime.now().toString().split(' ')[1];
+            formattedTime =
+                DateFormat("hh:mm:ss a").format(DateTime.now()).toString();
           },
         );
       },
     );
   }
 
+  String lottieUrl = "./assets/weatherAssets/loading.json";
+  void getLottieUrl() {
+    switch (widget.iconName) {
+      case "01d":
+        setState(() {
+          lottieUrl = "./assets/weatherAssets/home.json";
+        });
+        break;
+      case "01n":
+        setState(() {
+          lottieUrl = "./assets/weatherAssets/night2.json";
+        });
+        break;
+      case "02d":
+        setState(() {
+          lottieUrl = "./assets/weatherAssets/cloudSun.json";
+        });
+        break;
+      case "02n":
+      case "04n":
+        setState(() {
+          lottieUrl = "./assets/weatherAssets/cloudy_night.json";
+        });
+        break;
+      case "03n":
+      case "04d":
+        setState(() {
+          lottieUrl = "./assets/weatherAssets/cloud.json";
+        });
+        break;
+      case "03d":
+        setState(() {
+          lottieUrl = "./assets/weatherAssets/cloud.json";
+        });
+      case "09d":
+      case "09n":
+      case "10n":
+        setState(() {
+          lottieUrl = "./assets/weatherAssets/cloud_rain.json";
+        });
+        break;
+      case "10d":
+        setState(() {
+          lottieUrl = "./assets/weatherAssets/sunCloud1.json";
+        });
+        break;
+      case "11d":
+      case "11n":
+        setState(() {
+          lottieUrl = "./assets/weatherAssets/thunderstorm.json";
+        });
+        break;
+      case "50d":
+      case "50n":
+        setState(() {
+          lottieUrl = "./assets/weatherAssets/wind.json";
+        });
+        break;
+
+      default:
+        setState(() {
+          lottieUrl = "./assets/weatherAssets/loading.json";
+        });
+        break;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    String iconUrl = "https://openweathermap.org/img/wn/50n@2x.png";
+
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 1.8,
@@ -82,7 +166,7 @@ class _MainContainerState extends State<MainContainer> {
                       width: 50.0,
                       child: Lottie.asset("./assets/weatherAssets/time.json"),
                     ),
-                    MyText(time.toString(), 20, greyColor),
+                    MyText(formattedTime.toString(), 20, greyColor),
                   ],
                 )
               ],
@@ -90,7 +174,7 @@ class _MainContainerState extends State<MainContainer> {
             SizedBox(
               // height: 280.0,
               // width: 50.0,
-              child: Lottie.asset("./assets/weatherAssets/cloud.json"),
+              child: Lottie.asset(lottieUrl),
             ),
             // MyText("Hello", 20, Colors.white),
             // MyText("Hello", 20, Colors.white),
@@ -98,6 +182,7 @@ class _MainContainerState extends State<MainContainer> {
                 "${widget.description[0].toUpperCase()}${widget.description.substring(1)}",
                 18,
                 greyColor),
+
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               // mainAxisAlignment: MainAxisAlignment.center,
@@ -111,7 +196,8 @@ class _MainContainerState extends State<MainContainer> {
                       child: Lottie.asset(
                           "./assets/weatherAssets/temperature.json"),
                     ),
-                    MyText("20 °C", 50, greyColor),
+                    MyText("${double.parse(widget.temperature).toInt()} °C", 50,
+                        greyColor),
                   ],
                 ),
                 MyText("Tuesday, 24 November", 15, greyColor),

@@ -7,6 +7,7 @@ class Weather {
   final String feels_like;
   final String humidity;
   final String windSpeed;
+  final int timeStamp;
   Weather({
     required this.cityName,
     required this.temperature,
@@ -16,17 +17,18 @@ class Weather {
     required this.feels_like,
     required this.humidity,
     required this.windSpeed,
+    required this.timeStamp,
   });
   factory Weather.fromJson(Map<String, dynamic> json) {
     return Weather(
-      cityName: json['name'],
-      temperature: json['main']['temp'].toString(),
-      mainCondition: json['weather'][0]['main'],
-      description: json['weather'][0]['description'],
-      icon: json['weather'][0]['icon'],
-      feels_like: json['main']['feels_like'].toString(),
-      humidity: json['main']['humidity'].toString(),
-      windSpeed: json['wind']['speed'].toString(),
-    );
+        cityName: json['name'],
+        temperature: json['main']['temp'].toString(),
+        mainCondition: json['weather'][0]['main'],
+        description: json['weather'][0]['description'],
+        icon: json['weather'][0]['icon'],
+        feels_like: json['main']['feels_like'].toString(),
+        humidity: json['main']['humidity'].toString(),
+        windSpeed: json['wind']['speed'].toString(),
+        timeStamp: json['dt']);
   }
 }

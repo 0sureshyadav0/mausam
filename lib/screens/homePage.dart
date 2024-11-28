@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weather/colors/color.dart';
@@ -62,6 +60,7 @@ class _HomePageState extends State<HomePage> {
     // final deviceWidth = MediaQuery.of(context).size.width;
     // final deviceHeight = MediaQuery.of(context).size.height;
     String? description = _weather?.description;
+    String iconUrl = "https://openweathermap.org/img/wn/01d@2x.png";
     return Scaffold(
       backgroundColor: lightColor,
       body: _weather == null
@@ -87,11 +86,16 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
+                      // if (_weather?.icon != null)
                       MainContainer(
                         cityName: "${_weather?.cityName}",
                         countryName: _country ?? "",
+                        iconName: _weather?.icon ?? "01d",
                         description: "$description",
+                        temperature: _weather?.temperature ?? "",
+                        timeStamp: _weather?.timeStamp ?? 0,
                       ),
+                      // Image.network(iconUrl),
                       // MyText("${_weather?.cityName}", 10, Colors.white),
                       const ExtraWeatherInfo(),
                       Align(
