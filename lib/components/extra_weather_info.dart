@@ -4,13 +4,13 @@ import 'package:weather/colors/color.dart';
 import 'package:weather/widgets/text.dart';
 
 class ExtraWeatherInfo extends StatefulWidget {
-  String feels_like;
+  String feelsLike;
   String humidity;
   String windSpeed;
   String iconName;
   ExtraWeatherInfo({
     super.key,
-    required this.feels_like,
+    required this.feelsLike,
     required this.humidity,
     required this.windSpeed,
     required this.iconName,
@@ -85,13 +85,11 @@ class _ExtraWeatherInfoState extends State<ExtraWeatherInfo> {
                     child:
                         Lottie.asset("./assets/weatherAssets/$lottieName.json"),
                   ),
-                  Container(
-                    child: Column(children: [
-                      MyText("${double.parse(widget.feels_like).toInt()} °C",
-                          15.0, Colors.white),
-                      MyText("Feels Like", 15, greyColor),
-                    ]),
-                  )
+                  Column(children: [
+                    myText("${double.parse(widget.feelsLike).toInt()} °C", 15.0,
+                        Colors.white),
+                    myText("Feels Like", 15, greyColor),
+                  ])
                 ],
               ),
             ),
@@ -106,13 +104,11 @@ class _ExtraWeatherInfoState extends State<ExtraWeatherInfo> {
                     child:
                         Lottie.asset("./assets/weatherAssets/humidity1.json"),
                   ),
-                  Container(
-                    child: Column(
-                      children: [
-                        MyText("${widget.humidity} %", 15, Colors.white),
-                        MyText("Humidity", 15, greyColor),
-                      ],
-                    ),
+                  Column(
+                    children: [
+                      myText("${widget.humidity} %", 15, Colors.white),
+                      myText("Humidity", 15, greyColor),
+                    ],
                   )
                 ],
               ),
@@ -127,13 +123,11 @@ class _ExtraWeatherInfoState extends State<ExtraWeatherInfo> {
                     width: 50.0,
                     child: Lottie.asset("./assets/weatherAssets/wind.json"),
                   ),
-                  Container(
-                    child: Column(
-                      children: [
-                        MyText("${widget.windSpeed} Km/h", 15, Colors.white),
-                        MyText("Wind", 15, greyColor),
-                      ],
-                    ),
+                  Column(
+                    children: [
+                      myText("${widget.windSpeed} Km/h", 15, Colors.white),
+                      myText("Wind", 15, greyColor),
+                    ],
                   )
                 ],
               ),

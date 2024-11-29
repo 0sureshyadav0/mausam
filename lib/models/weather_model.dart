@@ -4,7 +4,7 @@ class Weather {
   final String description;
   final String mainCondition;
   final String icon;
-  final String feels_like;
+  final String feelsLike;
   final String humidity;
   final String windSpeed;
   final int timeStamp;
@@ -14,7 +14,7 @@ class Weather {
     required this.mainCondition,
     required this.description,
     required this.icon,
-    required this.feels_like,
+    required this.feelsLike,
     required this.humidity,
     required this.windSpeed,
     required this.timeStamp,
@@ -26,7 +26,7 @@ class Weather {
         mainCondition: json['weather'][0]['main'],
         description: json['weather'][0]['description'],
         icon: json['weather'][0]['icon'],
-        feels_like: json['main']['feels_like'].toString(),
+        feelsLike: json['main']['feels_like'].toString(),
         humidity: json['main']['humidity'].toString(),
         windSpeed: json['wind']['speed'].toString(),
         timeStamp: json['dt']);

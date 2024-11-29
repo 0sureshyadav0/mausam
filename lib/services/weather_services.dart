@@ -4,7 +4,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:weather/models/weatherModel.dart';
+import 'package:weather/models/weather_model.dart';
 
 class WeatherService {
   Future<Weather> getWeather(int id) async {

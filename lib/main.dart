@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather/provider/cityProvider.dart';
-import 'package:weather/screens/homePage.dart';
+import 'package:weather/provider/city_provider.dart';
+import 'package:weather/screens/home_page.dart';
 
 void main() {
   runApp(MultiProvider(

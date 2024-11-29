@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:weather/colors/color.dart';
-import 'package:weather/provider/cityProvider.dart';
+import 'package:weather/provider/city_provider.dart';
 import 'package:weather/widgets/text.dart';
 
 class Bottomsheet extends StatefulWidget {
@@ -100,8 +100,8 @@ class _BottomsheetState extends State<Bottomsheet> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                MyText(cityData['name'], 15, Colors.white),
-                                MyText("${cityData['id']}", 12, greyColor)
+                                myText(cityData['name'], 15, Colors.white),
+                                myText("${cityData['id']}", 12, greyColor)
                               ],
                             ),
                           ),

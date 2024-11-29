@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weather/colors/color.dart';
-import 'package:weather/models/forecastModel.dart';
-import 'package:weather/services/forecastServices.dart';
+import 'package:weather/services/forecast_services.dart';
 import 'package:weather/widgets/text.dart';
 
 class SevenDays extends StatefulWidget {
@@ -15,7 +14,7 @@ class SevenDays extends StatefulWidget {
 
 class _SevenDaysState extends State<SevenDays> {
   //instance
-  ForecastWeather? _forecastWeather;
+  // ForecastWeather? _forecastWeather;
   final ForecastWeatherService _forecastWeatherService =
       ForecastWeatherService();
   //fetch
@@ -27,7 +26,7 @@ class _SevenDaysState extends State<SevenDays> {
         _forecastList = forecast;
       });
     } catch (error) {
-      print("Error fetching forecast: $error");
+      throw Exception("Error: $error");
     }
   }
 
@@ -118,7 +117,7 @@ class _SevenDaysState extends State<SevenDays> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        MyText(
+                        myText(
                             "${_forecastList[index]['weather'][0]['description'][0].toUpperCase()}${_forecastList[index]['weather'][0]['description'].substring(1)}",
                             20,
                             Colors.white),
@@ -126,8 +125,8 @@ class _SevenDaysState extends State<SevenDays> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            MyText(date, 12, Colors.white),
-                            MyText(time, 12, Colors.grey),
+                            myText(date, 12, Colors.white),
+                            myText(time, 12, Colors.grey),
                           ],
                         )
                       ],

@@ -58,7 +58,7 @@ class _MainContainerState extends State<MainContainer> {
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
     final deviceHeight = MediaQuery.of(context).size.height;
-    String iconUrl = "https://openweathermap.org/img/wn/50n@2x.png";
+    // String iconUrl = "https://openweathermap.org/img/wn/50n@2x.png";
     String lottieName = "loading";
     switch (widget.iconName) {
       case "01d":
@@ -114,70 +114,60 @@ class _MainContainerState extends State<MainContainer> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          height: deviceWidth / 10,
-                          width: deviceWidth / 8,
-                          child: Lottie.asset(
-                              "./assets/weatherAssets/location.json"),
-                        ),
-                        SizedBox(
-                          width: deviceWidth / 3.2,
-                          child: MyText(
-                              "${widget.cityName}, ${widget.countryName}",
-                              20,
-                              const Color.fromARGB(255, 221, 216, 216)),
-                        ),
-                      ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    SizedBox(
+                      height: deviceWidth / 10,
+                      width: deviceWidth / 8,
+                      child:
+                          Lottie.asset("./assets/weatherAssets/location.json"),
                     ),
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        child: SizedBox(
-                          height: deviceWidth / 10,
-                          width: deviceWidth / 8,
-                          child:
-                              Lottie.asset("./assets/weatherAssets/time.json"),
-                        ),
+                    SizedBox(
+                      width: deviceWidth / 3.2,
+                      child: myText("${widget.cityName}, ${widget.countryName}",
+                          20, const Color.fromARGB(255, 221, 216, 216)),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      height: deviceWidth / 10,
+                      width: deviceWidth / 8,
+                      child: Lottie.asset("./assets/weatherAssets/time.json"),
+                    ),
+                    Text(
+                      formattedTime,
+                      style: const TextStyle(
+                        fontSize: 25,
+                        color: Color.fromARGB(255, 24, 241, 4),
+                        fontFamily: "Digital",
                       ),
-                      Text(
-                        formattedTime,
-                        style: const TextStyle(
-                          fontSize: 25,
-                          color: Color.fromARGB(255, 24, 241, 4),
-                          fontFamily: "Digital",
-                        ),
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      amOrPm,
+                      style: const TextStyle(
+                        fontSize: 25,
+                        color: Color.fromARGB(255, 24, 241, 4),
+                        fontFamily: "Digital",
                       ),
-                      const SizedBox(width: 10),
-                      Text(
-                        amOrPm,
-                        style: const TextStyle(
-                          fontSize: 25,
-                          color: Color.fromARGB(255, 24, 241, 4),
-                          fontFamily: "Digital",
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
             SizedBox(
               height: 270.0,
               child: Lottie.asset("./assets/weatherAssets/$lottieName.json"),
             ),
-            MyText(
+            myText(
                 "${widget.description[0].toUpperCase()}${widget.description.substring(1)}",
                 18,
                 greyColor),
-
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -190,11 +180,11 @@ class _MainContainerState extends State<MainContainer> {
                       child: Lottie.asset(
                           "./assets/weatherAssets/temperature.json"),
                     ),
-                    MyText("${double.parse(widget.temperature).toInt()} °C", 50,
+                    myText("${double.parse(widget.temperature).toInt()} °C", 50,
                         Colors.white),
                   ],
                 ),
-                MyText("$day, $date", 15, greyColor),
+                myText("$day, $date", 15, greyColor),
               ],
             ),
           ],

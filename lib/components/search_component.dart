@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weather/colors/color.dart';
-import 'package:weather/components/bottomSheet.dart';
-import 'package:weather/screens/search.dart';
+import 'package:weather/components/bottom_sheet.dart';
 import 'package:weather/widgets/text.dart';
 
 class Search extends StatefulWidget {
@@ -34,7 +33,7 @@ class _SearchState extends State<Search> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                MyText("Search City", 16, Colors.white),
+                myText("Search City", 16, Colors.white),
                 Lottie.asset(
                     height: 50.0,
                     width: 50.0,
@@ -44,25 +43,4 @@ class _SearchState extends State<Search> {
           )),
     );
   }
-}
-
-Route _createRoute() {
-  return PageRouteBuilder(
-    transitionDuration: const Duration(milliseconds: 500),
-    pageBuilder: (context, animation, secondaryAnimation) =>
-        const SearchScreen(),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(0.0, 1.0); // Start from bottom
-      const end = Offset.zero; // End at original position
-      const curve = Curves.easeInOut;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-      var offsetAnimation = animation.drive(tween);
-
-      return SlideTransition(
-        position: offsetAnimation,
-        child: child,
-      );
-    },
-  );
 }

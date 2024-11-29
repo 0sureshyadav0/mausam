@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weather/colors/color.dart';
-import 'package:weather/components/extraWeatherInfo.dart';
-import 'package:weather/components/mainContainer.dart';
-import 'package:weather/components/searchComponent.dart';
-import 'package:weather/components/sevenDays.dart';
-import 'package:weather/models/weatherModel.dart';
-import 'package:weather/services/weatherService.dart';
+import 'package:weather/components/extra_weather_info.dart';
+import 'package:weather/components/main_container.dart';
+import 'package:weather/components/search_component.dart';
+import 'package:weather/components/five_days_forecast.dart';
+import 'package:weather/models/weather_model.dart';
+import 'package:weather/services/weather_services.dart';
 import 'package:weather/widgets/text.dart';
 
 class HomePage extends StatefulWidget {
@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Lottie.asset(
                       height: 200.0, "./assets/weatherAssets/loading.json"),
-                  // MyText("Loading...", 20, Colors.white),
+                  // myText("Loading...", 20, Colors.white),
                 ],
               ),
             )
@@ -94,9 +94,9 @@ class _HomePageState extends State<HomePage> {
                         timeStamp: _weather?.timeStamp ?? 0,
                       ),
                       // Image.network(iconUrl),
-                      // MyText("${_weather?.cityName}", 10, Colors.white),
+                      // myText("${_weather?.cityName}", 10, Colors.white),
                       ExtraWeatherInfo(
-                        feels_like: _weather?.feels_like ?? "",
+                        feelsLike: _weather?.feelsLike ?? "",
                         humidity: _weather?.humidity ?? "",
                         windSpeed: _weather?.windSpeed ?? "",
                         iconName: _weather?.icon ?? "01d",
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                           child: Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: MyText("5 Days Forecast", 18, Colors.white),
+                            child: myText("5 Days Forecast", 18, Colors.white),
                           )),
                       const SizedBox(
                         height: 120,
