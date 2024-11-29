@@ -39,8 +39,8 @@ class _SevenDaysState extends State<SevenDays> {
 
   @override
   Widget build(BuildContext context) {
-    final deviceWidth = MediaQuery.of(context).size.width;
-    final deviceHeight = MediaQuery.of(context).size.height;
+    // final deviceWidth = MediaQuery.of(context).size.width;
+    // final deviceHeight = MediaQuery.of(context).size.height;
 
     return ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -53,7 +53,6 @@ class _SevenDaysState extends State<SevenDays> {
           final time = DateFormat("hh:mm a")
               .format(DateTime.fromMillisecondsSinceEpoch(timeStamp * 1000));
           String lottieName = "loading";
-          String lottieUrl = "./assets/weatherAssets/loading.json";
           switch (icon) {
             case "01d":
               lottieName = "sun";

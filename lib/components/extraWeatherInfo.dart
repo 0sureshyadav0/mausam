@@ -119,11 +119,6 @@ class _ExtraWeatherInfoState extends State<ExtraWeatherInfo> {
             ),
             Container(height: 140, width: 1, color: Colors.blue),
             Expanded(
-              // width: 100.0,
-              // height: 100.0,
-              // decoration: BoxDecoration(
-              //   color: Colors.yellow,
-              // ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

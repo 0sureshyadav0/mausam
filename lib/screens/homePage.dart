@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
     // final deviceWidth = MediaQuery.of(context).size.width;
     // final deviceHeight = MediaQuery.of(context).size.height;
     String? description = _weather?.description;
-    String iconUrl = "https://openweathermap.org/img/wn/01d@2x.png";
+    // String iconUrl = "https://openweathermap.org/img/wn/01d@2x.png";
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: lightColor,

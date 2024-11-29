@@ -171,11 +171,8 @@ class _MainContainerState extends State<MainContainer> {
             ),
             SizedBox(
               height: 270.0,
-              // width: 50.0,
               child: Lottie.asset("./assets/weatherAssets/$lottieName.json"),
             ),
-            // MyText("Hello", 20, Colors.white),
-            // MyText("Hello", 20, Colors.white),
             MyText(
                 "${widget.description[0].toUpperCase()}${widget.description.substring(1)}",
                 18,
@@ -183,7 +180,6 @@ class _MainContainerState extends State<MainContainer> {
 
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
