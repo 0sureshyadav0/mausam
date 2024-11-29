@@ -7,11 +7,13 @@ class ExtraWeatherInfo extends StatefulWidget {
   String feels_like;
   String humidity;
   String windSpeed;
+  String iconName;
   ExtraWeatherInfo({
     super.key,
     required this.feels_like,
     required this.humidity,
     required this.windSpeed,
+    required this.iconName,
   });
 
   @override
@@ -21,6 +23,47 @@ class ExtraWeatherInfo extends StatefulWidget {
 class _ExtraWeatherInfoState extends State<ExtraWeatherInfo> {
   @override
   Widget build(BuildContext context) {
+    String lottieName = "loading";
+    switch (widget.iconName) {
+      case "01d":
+        lottieName = "sun";
+        break;
+      case "01n":
+        lottieName = "night2";
+        break;
+      case "02d":
+        lottieName = "cloudSun";
+        break;
+      case "02n":
+      case "04n":
+        lottieName = "cloudy_night";
+        break;
+      case "03d":
+      case "03n":
+      case "04d":
+        lottieName = "cloud";
+        break;
+      case "09d":
+      case "09n":
+      case "10n":
+        lottieName = "cloud_rain";
+        break;
+      case "10d":
+        lottieName = "sunCloud1";
+        break;
+      case "11d":
+      case "11n":
+        lottieName = "thunderstorm";
+        break;
+      case "50d":
+      case "50n":
+        lottieName = "wind";
+        break;
+      default:
+        lottieName = "loading";
+        break;
+    }
+
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 145.0,
@@ -39,7 +82,8 @@ class _ExtraWeatherInfoState extends State<ExtraWeatherInfo> {
                 children: [
                   SizedBox(
                     height: 40.0,
-                    child: Lottie.asset("./assets/weatherAssets/cloud.json"),
+                    child:
+                        Lottie.asset("./assets/weatherAssets/$lottieName.json"),
                   ),
                   Container(
                     child: Column(children: [

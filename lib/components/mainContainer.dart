@@ -32,6 +32,7 @@ class _MainContainerState extends State<MainContainer> {
   String time = "";
 
   String formattedTime = "";
+  String amOrPm = "";
   String date = DateFormat("dd MMMM").format(DateTime.now());
   String day = DateFormat("EEEE").format(DateTime.now()).toString();
   @override
@@ -39,94 +40,69 @@ class _MainContainerState extends State<MainContainer> {
     super.initState();
     print("Icon Name: ${widget.iconName}");
 
-    getLottieUrl();
     Timer.periodic(
       const Duration(seconds: 1),
       (timer) {
         setState(
           () {
             formattedTime =
-                DateFormat("hh:mm:ss a").format(DateTime.now()).toString();
+                DateFormat("hh:mm:ss").format(DateTime.now()).toString();
+            amOrPm = DateFormat("a").format(DateTime.now()).toString();
           },
         );
       },
     );
   }
 
-  String lottieUrl = "./assets/weatherAssets/loading.json";
-  void getLottieUrl() {
+  @override
+  Widget build(BuildContext context) {
+    final deviceWidth = MediaQuery.of(context).size.width;
+    final deviceHeight = MediaQuery.of(context).size.height;
+    String iconUrl = "https://openweathermap.org/img/wn/50n@2x.png";
+    String lottieName = "loading";
     switch (widget.iconName) {
       case "01d":
-        setState(() {
-          lottieUrl = "./assets/weatherAssets/home.json";
-        });
+        lottieName = "sun";
         break;
       case "01n":
-        setState(() {
-          lottieUrl = "./assets/weatherAssets/night2.json";
-        });
+        lottieName = "night2";
         break;
       case "02d":
-        setState(() {
-          lottieUrl = "./assets/weatherAssets/cloudSun.json";
-        });
+        lottieName = "cloudSun";
         break;
       case "02n":
       case "04n":
-        setState(() {
-          lottieUrl = "./assets/weatherAssets/cloudy_night.json";
-        });
-        break;
-      case "03n":
-      case "04d":
-        setState(() {
-          lottieUrl = "./assets/weatherAssets/cloud.json";
-        });
+        lottieName = "cloudy_night";
         break;
       case "03d":
-        setState(() {
-          lottieUrl = "./assets/weatherAssets/cloud.json";
-        });
+      case "03n":
+      case "04d":
+        lottieName = "cloud";
+        break;
       case "09d":
       case "09n":
       case "10n":
-        setState(() {
-          lottieUrl = "./assets/weatherAssets/cloud_rain.json";
-        });
+        lottieName = "cloud_rain";
         break;
       case "10d":
-        setState(() {
-          lottieUrl = "./assets/weatherAssets/sunCloud1.json";
-        });
+        lottieName = "sunCloud1";
         break;
       case "11d":
       case "11n":
-        setState(() {
-          lottieUrl = "./assets/weatherAssets/thunderstorm.json";
-        });
+        lottieName = "thunderstorm";
         break;
       case "50d":
       case "50n":
-        setState(() {
-          lottieUrl = "./assets/weatherAssets/wind.json";
-        });
+        lottieName = "wind";
         break;
-
       default:
-        setState(() {
-          lottieUrl = "./assets/weatherAssets/loading.json";
-        });
+        lottieName = "loading";
         break;
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    String iconUrl = "https://openweathermap.org/img/wn/50n@2x.png";
 
     return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 1.8,
+      width: deviceWidth,
+      height: deviceHeight / 1.8,
       decoration: BoxDecoration(
         color: darkColor,
         borderRadius: BorderRadius.circular(20.0),
@@ -138,44 +114,65 @@ class _MainContainerState extends State<MainContainer> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 50.0,
-                      width: 50.0,
-                      child: Lottie.asset(
-                        "./assets/weatherAssets/location.json",
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    child: Row(
                       children: [
-                        MyText(widget.cityName, 20, Colors.white),
-                        MyText(widget.countryName, 14, Colors.white),
+                        SizedBox(
+                          height: deviceWidth / 10,
+                          width: deviceWidth / 8,
+                          child: Lottie.asset(
+                              "./assets/weatherAssets/location.json"),
+                        ),
+                        SizedBox(
+                          width: deviceWidth / 3.2,
+                          child: MyText(
+                              "${widget.cityName}, ${widget.countryName}",
+                              20,
+                              const Color.fromARGB(255, 221, 216, 216)),
+                        ),
                       ],
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                      height: 40.0,
-                      width: 50.0,
-                      child: Lottie.asset("./assets/weatherAssets/time.json"),
                     ),
-                    MyText(formattedTime.toString(), 20, greyColor),
-                  ],
-                )
-              ],
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        child: SizedBox(
+                          height: deviceWidth / 10,
+                          width: deviceWidth / 8,
+                          child:
+                              Lottie.asset("./assets/weatherAssets/time.json"),
+                        ),
+                      ),
+                      Text(
+                        formattedTime,
+                        style: const TextStyle(
+                          fontSize: 25,
+                          color: Color.fromARGB(255, 24, 241, 4),
+                          fontFamily: "Digital",
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Text(
+                        amOrPm,
+                        style: const TextStyle(
+                          fontSize: 25,
+                          color: Color.fromARGB(255, 24, 241, 4),
+                          fontFamily: "Digital",
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
             SizedBox(
-              // height: 280.0,
+              height: 270.0,
               // width: 50.0,
-              child: Lottie.asset(lottieUrl),
+              child: Lottie.asset("./assets/weatherAssets/$lottieName.json"),
             ),
             // MyText("Hello", 20, Colors.white),
             // MyText("Hello", 20, Colors.white),

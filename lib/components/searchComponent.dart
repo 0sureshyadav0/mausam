@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weather/colors/color.dart';
+import 'package:weather/components/bottomSheet.dart';
 import 'package:weather/screens/search.dart';
 import 'package:weather/widgets/text.dart';
 
@@ -16,7 +17,12 @@ class _SearchState extends State<Search> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(_createRoute());
+        // Navigator.of(context).push(_createRoute());
+        showBottomSheet(
+            context: context,
+            builder: (context) {
+              return const Bottomsheet();
+            });
       },
       child: Container(
           height: 60,

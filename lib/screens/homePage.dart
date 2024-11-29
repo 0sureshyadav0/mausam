@@ -19,21 +19,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   //api key
-  final WeatherService _weatherService =
-      WeatherService("982b594dc67d22b99403531058322bc4");
+  final WeatherService _weatherService = WeatherService();
   Weather? _weather;
   String? _country;
   //fetch weather
   _fetchWeather() async {
     try {
-      print("inside try");
-      final weather = await _weatherService.getWeather();
+      final weather = await _weatherService.getWeather(1283240);
+
       final countryName = await _weatherService.getCurrentCity();
-      print("after weather : $weather");
       setState(() {
         _weather = weather;
         _country = countryName;
-        print(_weather);
       });
     } catch (e) {
       // throw new Exception("Fetch weather failed");
@@ -62,6 +59,7 @@ class _HomePageState extends State<HomePage> {
     String? description = _weather?.description;
     String iconUrl = "https://openweathermap.org/img/wn/01d@2x.png";
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: lightColor,
       body: _weather == null
           ? Center(
@@ -101,16 +99,17 @@ class _HomePageState extends State<HomePage> {
                         feels_like: _weather?.feels_like ?? "",
                         humidity: _weather?.humidity ?? "",
                         windSpeed: _weather?.windSpeed ?? "",
+                        iconName: _weather?.icon ?? "01d",
                       ),
                       Align(
                           alignment: Alignment.topLeft,
                           child: Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: MyText("7 Days Forecast", 18, Colors.white),
+                            child: MyText("5 Days Forecast", 18, Colors.white),
                           )),
                       const SizedBox(
-                        height: 110,
+                        height: 120,
                         child: SevenDays(),
                       ),
                       const SizedBox(height: 5.0),
