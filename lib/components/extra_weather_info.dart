@@ -4,11 +4,11 @@ import 'package:weather/colors/color.dart';
 import 'package:weather/widgets/text.dart';
 
 class ExtraWeatherInfo extends StatefulWidget {
-  String feelsLike;
-  String humidity;
-  String windSpeed;
-  String iconName;
-  ExtraWeatherInfo({
+  final String feelsLike;
+  final String humidity;
+  final String windSpeed;
+  final String iconName;
+  const ExtraWeatherInfo({
     super.key,
     required this.feelsLike,
     required this.humidity,

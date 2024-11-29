@@ -70,9 +70,11 @@ class _BottomsheetState extends State<Bottomsheet> {
               ],
             ),
             const SizedBox(height: 10),
-            Consumer(
-              builder: (context, cityProvider, child) {
-                final cities = cityProvider.filteredCities;
+            Consumer<CityProvider>(
+              builder: (BuildContext context, CityProvider cityProvider,
+                  Widget? child) {
+                final List<Map<String, dynamic>> cities =
+                    cityProvider.filteredCities;
                 if (cities.isEmpty) {
                   return Center(
                     child: SizedBox(

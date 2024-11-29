@@ -7,13 +7,13 @@ import 'package:weather/colors/color.dart';
 import 'package:weather/widgets/text.dart';
 
 class MainContainer extends StatefulWidget {
-  String cityName;
-  String countryName;
-  String iconName;
-  String description;
-  String temperature;
-  int timeStamp;
-  MainContainer({
+  final String cityName;
+  final String countryName;
+  final String iconName;
+  final String description;
+  final String temperature;
+  final int timeStamp;
+  const MainContainer({
     super.key,
     required this.cityName,
     required this.countryName,
@@ -28,9 +28,7 @@ class MainContainer extends StatefulWidget {
 }
 
 class _MainContainerState extends State<MainContainer> {
-  @override
   String time = "";
-
   String formattedTime = "";
   String amOrPm = "";
   String date = DateFormat("dd MMMM").format(DateTime.now());
@@ -38,8 +36,6 @@ class _MainContainerState extends State<MainContainer> {
   @override
   void initState() {
     super.initState();
-    print("Icon Name: ${widget.iconName}");
-
     Timer.periodic(
       const Duration(seconds: 1),
       (timer) {

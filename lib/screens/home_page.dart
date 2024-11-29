@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
       });
     } catch (e) {
       // throw new Exception("Fetch weather failed");
-      print("Fetch weather failed");
+      throw Exception("Fetch weather failed");
     }
   }
 
