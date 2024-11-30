@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CityProvider extends ChangeNotifier {
-  final List<Map<String, dynamic>> _allCities = [];
+  List<Map<String, dynamic>> _allCities = [];
   List<Map<String, dynamic>> _filteredCities = [];
   List<Map<String, dynamic>> get filteredCities => _filteredCities;
+
   Future<void> loadCities() async {
     final cities = await rootBundle.loadString("./lib/cities/cities.json");
 
@@ -24,6 +25,7 @@ class CityProvider extends ChangeNotifier {
       }
       return {};
     }).toList();
+    _allCities = allCities;
     _filteredCities = List.from(allCities);
     notifyListeners();
   }
@@ -32,12 +34,11 @@ class CityProvider extends ChangeNotifier {
     if (searchCityName.isEmpty) {
       _filteredCities = List.from(_allCities);
     } else {
-      _filteredCities = _allCities
-          .where((city) => city['name']
-              .toString()
-              .toLowerCase()
-              .contains(searchCityName.toString().toLowerCase()))
-          .toList();
+      _filteredCities = _allCities.where((city) {
+        return city['name'].toString().toLowerCase().contains(
+              searchCityName.toString().toLowerCase(),
+            );
+      }).toList();
     }
     notifyListeners();
   }
