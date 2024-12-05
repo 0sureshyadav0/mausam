@@ -77,7 +77,7 @@ class _SevenDaysState extends State<SevenDays> {
               lottieName = "cloud_rain";
               break;
             case "10d":
-              lottieName = "sunCloud1";
+              lottieName = "cloudSun1";
               break;
             case "11d":
             case "11n":

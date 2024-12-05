@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -129,7 +127,7 @@ class _MainContainerState extends State<MainContainer> {
                       SizedBox(
                         width: deviceWidth / 3.3,
                         child: myText(
-                            "${widget.cityName}, ${widget.countryName}",
+                            "${widget.cityName} ${widget.countryName}",
                             20,
                             const Color.fromARGB(255, 221, 216, 216)),
                       ),
@@ -184,10 +182,10 @@ class _MainContainerState extends State<MainContainer> {
                             "./assets/weatherAssets/temperature.json"),
                       ),
                       Text("${double.parse(widget.temperature).toInt()} °C",
-                          style: TextStyle(
-                              fontSize: 50.0,
-                              color: Colors.white,
-                              fontFamily: GoogleFonts.lobsterTwo().fontFamily)),
+                          style: const TextStyle(
+                            fontSize: 50.0,
+                            color: Colors.white,
+                          ))
                     ],
                   ),
                   myText("$day, $date", 15, greyColor),

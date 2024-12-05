@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:weather/provider/city_provider.dart';
 import 'package:weather/provider/weather_provider.dart';
@@ -24,18 +24,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Mausam',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-        primarySwatch: Colors.deepPurple,
-        fontFamily: GoogleFonts.playfairDisplay().fontFamily,
-      ),
-      home: const HomePage(
-        title: "M A U S A M",
-      ),
-    );
+    return GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Mausam',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+          primarySwatch: Colors.deepPurple,
+        ),
+        home: const HomePage(
+          title: "M A U S A M",
+        ));
   }
 }
