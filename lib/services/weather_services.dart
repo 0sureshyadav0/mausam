@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -8,8 +9,9 @@ import 'package:weather/models/weather_model.dart';
 
 class WeatherService {
   Future<Weather> getWeather(String city) async {
+    await dotenv.load();
     final response = await http.get(Uri.parse(
-        "https://api.openweathermap.org/data/2.5/weather?q=$city&units=metric&appid=982b594dc67d22b99403531058322bc4"));
+        "https://api.openweathermap.org/data/2.5/weather?q=$city&units=metric&appid=${dotenv.env['API_KEY']}"));
     Get.snackbar("Response", "Response code: ${response.statusCode}");
     if (response.statusCode == 200) {
       return Weather.fromJson(jsonDecode(response.body));

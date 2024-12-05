@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:weather/provider/city_provider.dart';
 import 'package:weather/provider/weather_provider.dart';
 import 'package:weather/screens/home_page.dart';
 
-void main() {
+void main() async {
+  await dotenv.load();
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
