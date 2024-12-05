@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weather/colors/color.dart';
 import 'package:weather/services/forecast_services.dart';
+import 'package:weather/services/weather_services.dart';
 import 'package:weather/widgets/text.dart';
 
 class SevenDays extends StatefulWidget {
@@ -17,11 +18,13 @@ class _SevenDaysState extends State<SevenDays> {
   // ForecastWeather? _forecastWeather;
   final ForecastWeatherService _forecastWeatherService =
       ForecastWeatherService();
+  final WeatherService _weatherService = WeatherService();
   //fetch
   List<dynamic> _forecastList = [];
   _fetchForecast() async {
+    final cityName = await _weatherService.getCurrentCity();
     try {
-      final forecast = await _forecastWeatherService.getForecast();
+      final forecast = await _forecastWeatherService.getForecast(cityName);
       setState(() {
         _forecastList = forecast;
       });
