@@ -12,7 +12,6 @@ class WeatherService {
     await dotenv.load();
     final response = await http.get(Uri.parse(
         "https://api.openweathermap.org/data/2.5/weather?q=$city&units=metric&appid=${dotenv.env['API_KEY']}"));
-    Get.snackbar("Response", "Response code: ${response.statusCode}");
     if (response.statusCode == 200) {
       return Weather.fromJson(jsonDecode(response.body));
     } else if (response.statusCode == 404) {

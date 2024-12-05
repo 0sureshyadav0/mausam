@@ -32,18 +32,9 @@ class _HomePageState extends State<HomePage> {
         "Your residential area is $cityName");
     try {
       final weather = await _weatherService.getWeather(cityName);
-      Get.snackbar(
-          colorText: Colors.white,
-          duration: const Duration(seconds: 3),
-          "After Weather",
-          "Fetching weather details success.");
+
       setState(() {
         _weather = weather;
-        Get.snackbar(
-            colorText: Colors.white,
-            duration: const Duration(seconds: 3),
-            "Weather",
-            "Fetching weather details success.");
       });
     } catch (e) {
       // throw new Exception("Fetch weather failed");
