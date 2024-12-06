@@ -1,7 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:weather/colors/color.dart';
 import 'package:weather/components/extra_weather_info.dart';
 import 'package:weather/components/main_container.dart';
 import 'package:weather/components/five_days_forecast.dart';
@@ -68,22 +69,25 @@ class _HomePageState extends State<HomePage> {
     return Stack(
       fit: StackFit.expand,
       children: [
-        const Image(
-          fit: BoxFit.cover,
-          image: AssetImage("./assets/images/splash.jpeg"),
+        BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+          child: const Image(
+            fit: BoxFit.cover,
+            image: AssetImage("./assets/images/splash.jpeg"),
+          ),
         ),
         Scaffold(
           resizeToAvoidBottomInset: true,
-          backgroundColor: lightColor,
+          backgroundColor: Colors.transparent,
           appBar: AppBar(
-            backgroundColor: lightColor,
+            backgroundColor: Colors.transparent,
             centerTitle: true,
             title: myText(widget.title, 25, Colors.white),
           ),
           body: _weather == null
               ? Center(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Lottie.asset(
                           height: 100.0, "./assets/weatherAssets/loading.json"),

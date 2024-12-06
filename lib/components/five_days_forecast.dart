@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -101,7 +102,7 @@ class _SevenDaysState extends State<SevenDays> {
               height: 200,
               width: 300,
               decoration: BoxDecoration(
-                color: darkColor,
+                color: darkColor.withOpacity(0.3),
                 borderRadius: BorderRadius.circular(15),
               ),
               padding: const EdgeInsets.all(10),
