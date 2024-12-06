@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -187,9 +188,10 @@ class _MainContainerState extends State<MainContainer> {
                               "./assets/weatherAssets/temperature.json"),
                         ),
                         Text("${double.parse(widget.temperature).toInt()} °C",
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 50.0,
                               color: Colors.white,
+                              fontFamily: GoogleFonts.balooBhai2().fontFamily,
                             ))
                       ],
                     ),

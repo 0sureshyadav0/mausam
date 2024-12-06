@@ -7,6 +7,7 @@ import 'package:weather/components/extra_weather_info.dart';
 import 'package:weather/components/main_container.dart';
 import 'package:weather/components/five_days_forecast.dart';
 import 'package:weather/models/weather_model.dart';
+import 'package:weather/screens/developer_profile.dart';
 import 'package:weather/services/weather_services.dart';
 import 'package:weather/widgets/text.dart';
 
@@ -83,6 +84,20 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.transparent,
             centerTitle: true,
             title: myText(widget.title, 25, Colors.white),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 15.0),
+                child: IconButton(
+                  onPressed: () {
+                    Get.to(() => const DeveloperProfile());
+                  },
+                  icon: Hero(
+                      tag: "Hero",
+                      child: Lottie.asset(
+                          "./assets/weatherAssets/developer1.json")),
+                ),
+              ),
+            ],
           ),
           body: _weather == null
               ? Center(
