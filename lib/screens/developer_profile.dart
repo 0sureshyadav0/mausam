@@ -70,23 +70,26 @@ class _DeveloperProfileState extends State<DeveloperProfile> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      height: deviceHeight / 3.2,
-                      decoration: BoxDecoration(
-                        // color: Colors.red,
-                        boxShadow: const <BoxShadow>[
-                          BoxShadow(
-                            color: Colors.transparent,
-                            blurRadius: 12.0,
-                            // offset: Offset(5, 5),
-                            spreadRadius: 5.0,
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(20),
-                        image: const DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage(
-                            "./assets/images/myImg2.jpg",
+                    Hero(
+                      tag: "Hero",
+                      child: Container(
+                        height: deviceHeight / 3.2,
+                        decoration: BoxDecoration(
+                          // color: Colors.red,
+                          boxShadow: const <BoxShadow>[
+                            BoxShadow(
+                              color: Colors.transparent,
+                              blurRadius: 12.0,
+                              // offset: Offset(5, 5),
+                              spreadRadius: 5.0,
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(20),
+                          image: const DecorationImage(
+                            fit: BoxFit.fill,
+                            image: AssetImage(
+                              "./assets/images/myImg2.jpg",
+                            ),
                           ),
                         ),
                       ),
@@ -112,11 +115,9 @@ class _DeveloperProfileState extends State<DeveloperProfile> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Hero(
-                                          tag: "Hero",
-                                          child: Lottie.asset(
-                                              height: 30,
-                                              "./assets/weatherAssets/developer1.json")),
+                                      Lottie.asset(
+                                          height: 30,
+                                          "./assets/weatherAssets/developer1.json"),
                                       const SizedBox(width: 10),
                                       myText("Suresh Yadav", 20, Colors.white),
                                     ],
