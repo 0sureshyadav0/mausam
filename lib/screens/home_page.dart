@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.only(right: 15.0),
                 child: IconButton(
                   onPressed: () {
-                    Get.to(() => const DeveloperProfile());
+                    Get.to(() => const DeveloperContactInfo());
                   },
                   icon: Hero(
                       tag: "Hero",

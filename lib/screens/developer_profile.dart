@@ -2,174 +2,226 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:weather/colors/color.dart';
-import 'package:weather/widgets/text.dart';
 import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 
-class DeveloperProfile extends StatefulWidget {
-  const DeveloperProfile({super.key});
+class DeveloperContactInfo extends StatelessWidget {
+  const DeveloperContactInfo({super.key});
 
-  @override
-  State<DeveloperProfile> createState() => _DeveloperProfileState();
-}
+  void _launchUrl(String url) async {
+    await launchUrl(Uri.parse(url));
+  }
 
-class _DeveloperProfileState extends State<DeveloperProfile> {
   @override
   Widget build(BuildContext context) {
-    final deviceHeight = MediaQuery.of(context).size.height;
-    final deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.transparent,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: darkColor.withOpacity(0.7),
-        title: Text("Developer",
-            style: TextStyle(
-              fontFamily: GoogleFonts.playfairDisplay().fontFamily,
-              color: Colors.white,
-            )),
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-            )),
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                color: Colors.white,
+              )),
+        ),
+        backgroundColor: const Color.fromARGB(255, 3, 25, 153),
         centerTitle: true,
+        title: const Text(
+          "Developer",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Stack(
         children: [
-          Opacity(
-            opacity: 0.4,
-            child: Image.asset(
-                fit: BoxFit.fill,
-                height: MediaQuery.of(context).size.height,
-                "./assets/images/splash.jpeg"),
+          // Background Image
+          Container(
+            decoration: const BoxDecoration(
+              color: Colors.black,
+              image: DecorationImage(
+                image: AssetImage(
+                    './assets/images/background.jpeg'), // Add your background image
+                fit: BoxFit.cover,
+                opacity: 0.7,
+              ),
+            ),
           ),
-          Align(
-              alignment: Alignment.bottomCenter,
-              child: Opacity(
-                  opacity: 0.4,
-                  child:
-                      Lottie.asset("./assets/weatherAssets/developer2.json"))),
-          BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              width: deviceWidth,
-              decoration: const BoxDecoration(
-                  // color: darkColor.withOpacity(0.6),
+
+          // Glassmorphism Container
+          Center(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(30),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.7,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(30),
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.3),
+                      width: 2,
+                    ),
                   ),
-              child: Padding(
-                padding:
-                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Hero(
-                      tag: "Hero",
-                      child: Container(
-                        height: deviceHeight / 3.2,
-                        decoration: BoxDecoration(
-                          // color: Colors.red,
-                          boxShadow: const <BoxShadow>[
-                            BoxShadow(
-                              color: Colors.transparent,
-                              blurRadius: 12.0,
-                              // offset: Offset(5, 5),
-                              spreadRadius: 5.0,
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          image: const DecorationImage(
-                            fit: BoxFit.fill,
-                            image: AssetImage(
-                              "./assets/images/myImg2.jpg",
-                            ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Developer Profile Picture
+                        CircleAvatar(
+                          radius: 50,
+                          backgroundImage: const NetworkImage(
+                              'https://avatars.githubusercontent.com/u/117462201?v=4'), // Replace with your image path
+                          backgroundColor: Colors.grey[300],
+                        ),
+                        const SizedBox(height: 20),
+
+                        // Developer Name
+                        const Text(
+                          "Suresh Yadav",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                         ),
-                      ),
-                    ),
-                    const SizedBox(height: 30),
-                    Container(
-                      padding: const EdgeInsets.only(
-                          top: 20, left: 10, right: 10, bottom: 20),
-                      height: deviceHeight / 3,
-                      width: deviceWidth,
-                      decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.3),
-                          borderRadius: BorderRadius.circular(20)),
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.vertical,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: deviceWidth,
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Lottie.asset(
-                                          height: 30,
-                                          "./assets/weatherAssets/developer1.json"),
-                                      const SizedBox(width: 10),
-                                      myText("Suresh Yadav", 20, Colors.white),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    "Full Stack Developer",
-                                    style: TextStyle(
-                                      fontFamily: GoogleFonts.lato().fontFamily,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            myText("Contact", 20, Colors.white),
-                            IconButton(
-                              onPressed: () {
-                                launchWhatsApp();
-                              },
-                              icon: Row(
-                                children: [
-                                  const FaIcon(FontAwesomeIcons.whatsapp,
-                                      color: Colors.green, size: 40.0),
-                                  const SizedBox(width: 10),
-                                  myText("Whatsapp ", 20, Colors.green),
-                                ],
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                launchGithub();
-                              },
-                              icon: Row(
-                                children: [
-                                  const FaIcon(FontAwesomeIcons.github,
-                                      color: Colors.purple, size: 40.0),
-                                  const SizedBox(width: 10),
-                                  myText("Github", 20, Colors.white),
-                                ],
-                              ),
-                            )
-                          ],
+                        const SizedBox(height: 10),
+
+                        // Developer Title/Role
+                        const Text(
+                          "Full Stack Developer",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white70,
+                          ),
                         ),
-                      ),
-                    )
-                  ],
+                        const SizedBox(height: 20),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () => launchWhatsApp(),
+                                child: const Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    FaIcon(
+                                      FontAwesomeIcons.whatsapp,
+                                      color: Color.fromARGB(255, 2, 252, 10),
+                                      size: 30.0,
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "WhatsApp",
+                                      style: TextStyle(
+                                        color: Color.fromARGB(255, 2, 252, 10),
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 15),
+                              InkWell(
+                                onTap: () => _launchUrl(
+                                    'mailto:sureshyadav.info.np@gmail.com'),
+                                child: const Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    FaIcon(
+                                      FontAwesomeIcons.envelope,
+                                      color: Color.fromARGB(255, 245, 18, 2),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "sureshyadav.info.np@gmail.com",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              const SizedBox(height: 15),
+
+                              // GitHub Profile
+                              InkWell(
+                                onTap: () => _launchUrl(
+                                    'https://github.com/0sureshyadav0'),
+                                child: const Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    FaIcon(
+                                      FontAwesomeIcons.github,
+                                      color: Color.fromARGB(255, 245, 2, 83),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "github.com/0sureshyadav0",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 15),
+
+                              // LinkedIn Profile
+                              InkWell(
+                                onTap: () => _launchUrl(
+                                    'https://www.linkedin.com/in/0sureshyadav0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'),
+                                child: const Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    FaIcon(
+                                      FontAwesomeIcons.linkedinIn,
+                                      color: Color.fromARGB(255, 1, 5, 241),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "linkedin.com/in/sureshyadav",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+
+                        // Footer Note
+                        const Text(
+                          "Let's build something amazing together!",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontStyle: FontStyle.italic,
+                            color: Colors.white70,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -182,16 +234,6 @@ class _DeveloperProfileState extends State<DeveloperProfile> {
     );
     try {
       await launchUrl(link.asUri());
-    } catch (e) {
-      Get.snackbar("Error", "Failed to contact",
-          duration: const Duration(seconds: 3));
-    }
-  }
-
-  Future<void> launchGithub() async {
-    const url = "https://www.github.com/0sureshyadav0/";
-    try {
-      await launchUrl(Uri.parse(url));
     } catch (e) {
       Get.snackbar("Error", "Failed to contact",
           duration: const Duration(seconds: 3));
