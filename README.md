@@ -43,15 +43,15 @@ Mausam is a modern and intuitive weather app built with Flutter. It provides rea
    ```
 3. Install dependencies:
 
-  ```bash
-    flutter pub get
-  ```
+    ```bash
+      flutter pub get
+    ```
 
 4. Run the app:
 
-  ```bash
-    flutter run
-  ```
+    ```bash
+      flutter run
+    ```
 
 ## 🛠️ Technologies Used
 - **Flutter**: The app framework.
@@ -84,11 +84,11 @@ mausam/
 ## 📄 License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
---
+---
 
 ## 🧑‍💻 Developer
 Suresh Yadav
-- 🌐 [sureshyadav.info.np]
+- 🌐 [sureshyadav.info.np](https://www.sureshyadav.info.np)
 
 ---
 
@@ -98,7 +98,7 @@ Contributions are welcome! Feel free to open an issue or submit a pull request.
 ---
 
 ## 📞 Support
-For any issues or feedback, contact Suresh Yadav.
+For any issues or feedback, contact [Suresh Yadav](mailto:hi@sureshyadav.info.np).
 
 ---
 
