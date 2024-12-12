@@ -22,6 +22,7 @@ Mausam is a modern and intuitive weather app built with Flutter. It provides rea
 <center>
 <div style="display:flex;gap:20px;">
 <img src="./assets/images/img1.jpg" height="720px" width="300px">
+<img src="./assets/images/img3.jpg" height="720px" width="300px">
 <img src="./assets/images/img2.jpg" height="720px" width="300px">
 </div>
 </center>
