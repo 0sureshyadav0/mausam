@@ -88,7 +88,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## 🧑‍💻 Developer
 Suresh Yadav
-- 🌐 [sureshyadav.info.np](https://www.sureshyadav.info.np)
+🌐 [sureshyadav.info.np](https://www.sureshyadav.info.np)
 
 ---
 
