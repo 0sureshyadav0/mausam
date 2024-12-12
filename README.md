@@ -9,9 +9,9 @@ Mausam is a modern and intuitive weather app built with Flutter. It provides rea
 - **Current Weather**: Get accurate current weather details based on your location or by searching for a city.
 - **Hourly Forecast**: View hourly forecasts for the next 24 hours.
 - **Daily Forecast**: Get a 7-day weather forecast with high/low temperatures.
-- **Weather Alerts**: Receive weather warnings and updates for extreme conditions.
+  <!-- - **Weather Alerts**: Receive weather warnings and updates for extreme conditions. -->
 - **Location-based Updates**: Get weather information based on your GPS location.
-- **Search Functionality**: Search for any city worldwide and view its weather.
+<!-- - **Search Functionality**: Search for any city worldwide and view its weather. -->
 
 ---
 
